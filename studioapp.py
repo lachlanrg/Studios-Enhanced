@@ -2,16 +2,18 @@ from flask import Flask, render_template
 app = Flask(__name__, template_folder='Templates')
 
 
-PROJECTS = [
+PRODUCTS = [
     { 
-        'projectname': 'Studio Management',
+        'productname': 'Studio Management',
         'id': 1,
         'productowner': 'Wayne Brooks',
+        'prerequisite': 'Studio A',
      },
      { 
-        'projectname': 'Studio Management',
-        'id': 1,
-        'productowner': 'Wayne Brooks',
+        'productname': 'Rockets',
+        'id': 2,
+        'productowner': 'Valarie ',
+        'prerequisite': 'Applications A',
     }
 ]
 
@@ -20,7 +22,7 @@ PROJECTS = [
 
 @app.route('/')
 def home():
-    return render_template('home.html', projects=PROJECTS)
+    return render_template('home.html', products=PRODUCTS)
 
 @app.route('/student/')
 def student():

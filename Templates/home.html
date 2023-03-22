@@ -2,10 +2,24 @@
 {% extends "layout.html" %}
 {% block content %}
   <div class="home">
-    <h1>Studios Enhanced Home Page</h1>
+    <h1>Product Home Page</h1>
     <p>THis is a test for Render, aasddding to it now </p>
-    <p> 
-      {{projects}}
-    </p>
+
+
+    <div class="productpage"> 
+
+      {% for product in products %}
+
+      <div style="margin-bottom: 16px";>
+          <h4>{{product['productname']}}</h4>
+          <div><b>Product Owner:</b> {{product['productowner']}}</div>
+
+          {% if 'prerequisite' in product %}
+            <div><b>Prerequisite:</b> {{product['prerequisite']}}</div>
+          {% endif %}
+
+      </div>
+      {% endfor %}
+    </div>
   </div>
 {% endblock %}
