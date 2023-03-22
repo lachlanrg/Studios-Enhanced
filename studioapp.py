@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 app = Flask(__name__, template_folder='Templates')
 
 
@@ -31,6 +31,11 @@ def student():
 @app.route('/profile/')
 def profile():
     return render_template('profile.html')
+
+# This app route can convert the list of products into a json file. executed when placing route at end of url
+@app.route('/productjson/')
+def list_products():
+    return jsonify(PRODUCTS)
 
 
 if __name__ == '__main__':
