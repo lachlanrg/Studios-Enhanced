@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-app = Flask(__name__)
+app = Flask(__name__, template_folder='Templates')
 
 # this is where I can add more html pages
 # for each app route is another web page that is viewed
