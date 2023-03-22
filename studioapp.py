@@ -1,12 +1,26 @@
 from flask import Flask, render_template
 app = Flask(__name__, template_folder='Templates')
 
+
+PROJECTS = [
+    { 
+        'projectname': 'Studio Management',
+        'id': 1,
+        'productowner': 'Wayne Brooks',
+     },
+     { 
+        'projectname': 'Studio Management',
+        'id': 1,
+        'productowner': 'Wayne Brooks',
+    }
+]
+
 # this is where I can add more html pages
 # for each app route is another web page that is viewed
 
 @app.route('/')
 def home():
-    return render_template('home.html')
+    return render_template('home.html', projects=PROJECTS)
 
 @app.route('/student/')
 def student():
