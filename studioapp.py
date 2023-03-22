@@ -33,7 +33,7 @@ def profile():
     return render_template('profile.html')
 
 # This app route can convert the list of products into a json file. executed when placing route at end of urla
-@app.route('/productjson/')
+@app.route('/api/productjson/')
 def list_products():
     return jsonify(PRODUCTS)
 

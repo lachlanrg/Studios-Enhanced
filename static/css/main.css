@@ -3,11 +3,11 @@ body {
   padding: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #444;
+  
 }
-/*
- * Formatting the header area
- */
-header {
+/* Formatting the header area */
+
+/* header {
   background-color: #c7c7c7;
   height: 50px;
   width: 100%;
@@ -26,13 +26,20 @@ header h1.logo:hover {
   color: #fff;
   text-decoration: none;
 }
+
+*/
+
+/* Centering the body content */
+
 /*
- * Centering the body content
- */
+ 
 .container {
   width: 1200px;
   margin: 0 auto;
 }
+
+*/
+
 div.home {
   padding: 20px 0 30px 0;
   background-color: #ffffff;
