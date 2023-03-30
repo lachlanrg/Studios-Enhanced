@@ -21,6 +21,10 @@ PRODUCTS = [
 # for each app route is another web page that is viewed
 
 @app.route('/')
+def login():
+    return render_template('login_page.html')
+
+@app.route('/home')
 def home():
     return render_template('home.html', products=PRODUCTS)
 

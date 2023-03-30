@@ -33,29 +33,33 @@ header h1.logo:hover {
 
 /*
  
-.container {
+div.container {
   width: 1200px;
   margin: 0 auto;
 }
 
 */
+div.navheader {
+  width: 100%;
+  margin: 0 auto;
+}
 
 div.home {
-  padding: 20px 0 30px 0;
+  padding: 20px 50px 30px 50px;
   background-color: #ffffff;
   -webkit-border-radius: 6px;
      -moz-border-radius: 6px;
           border-radius: 6px;
 }
 div.student {
-  padding: 10px 0 30px 0;
+  padding: 20px 50px 30px 50px;
   background-color: #ffffff;
   -webkit-border-radius: 6px;
      -moz-border-radius: 6px;
           border-radius: 6px;
 }
 div.profile {
-  padding: 10px 0 30px 0;
+  padding: 20px 50px 30px 50px;
   background-color: #ffffff;
   -webkit-border-radius: 6px;
      -moz-border-radius: 6px;
