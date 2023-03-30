@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 from database import load_products_from_db
 
 
@@ -27,9 +27,10 @@ def profile():
 
 # This app route can convert the list of products into a json file. executed when placing route at end of url
 
-#@app.route('/api/productjson/')
-#def list_products():
-#    return jsonify(PRODUCTS)
+@app.route('/api/productjson/')
+def list_products():
+    products = load_products_from_db()
+    return jsonify(products)
 
 
 if __name__ == '__main__':
