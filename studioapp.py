@@ -12,7 +12,7 @@ app = Flask(__name__, template_folder='Templates')
 def login():
     return render_template('login_page.html')
 
-@app.route('/home')
+@app.route('/home/')
 def home():
     products = load_products_from_db()
     return render_template('home.html', products=products)
