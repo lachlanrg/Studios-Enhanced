@@ -14,7 +14,7 @@
       <li class="nav-item"><a href="{{ url_for('student') }}" class="nav-link">Student</a></li>
       <li class="nav-item"><a href="{{ url_for('profile') }}" class="nav-link active" aria-current="page">Profile</a></li>
       <li class="nav-item"><a href="#" class="nav-link">N/A</a></li>
-      <li class="nav-item"><a href="{{ url_for('login') }}" class="nav-link">Possible Logout</a></li>
+      <li class="nav-item"><a href="{{ url_for('logout') }}" class="nav-link">Logout</a></li>
   </ul>
   </header>
 </div>
@@ -22,6 +22,15 @@
 
   <div class="profile">
     <h1>This shows the users profile</h1>
-    <p>AND IT NRVER WORKSAll data for profile is here ..... List the student id etc.</p>
-  </div>
+    <p>Your account details are below:</p>
+    <br>
+    <div class="border-bottom" style="margin-bottom: 16px; padding-bottom: 20px";>
+      <h4>{{account['first_name']}} {{account['last_name']}}</h4>
+      <div><b>Student ID:</b> {{account['id']}}</div>
+      <div><b>Email:</b> {{account['email']}}</div>
+      <div><b>Account Type:</b> {{account['accountrole']}}</div>
+      <div><b>Current Studio:</b> {{account['current_studio']}}</div>
+    </div>
+
+  </div>      
 {% endblock %}
