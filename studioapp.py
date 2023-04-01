@@ -19,6 +19,12 @@ mysql = MySQL(app)
 
 app.secret_key = 'uwbdu8jJ89WJH4bjos834Hbu8Jhfiueak99bn0bbjsdf'
 
+connection_uri = (
+    "mysql+pymysql://p3tdqa99eyp5ihs04p9m:pscale_pw_ReSZao9FFuxG5X7dYrZu7dfL0vryGybgYNI2k7Oc7Dg@aws.connect.psdb.cloud/studiosenhanced?charset=utf8mb4"
+    "?ssl_ca=/home/gord/client-ssl/ca.pem"
+    "&ssl_cert=/home/gord/client-ssl/client-cert.pem"
+    "&ssl_key=/home/gord/client-ssl/client-key.pem"
+)
 
 # this is where I can add more html pages
 # for each app route is another web page that is viewed

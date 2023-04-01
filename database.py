@@ -6,7 +6,9 @@ engine = create_engine (
     dbconnection_string, pool_pre_ping=True,
     connect_args= {
         "ssl": {
-            "ca": "/etc/ssl/cert.pem"
+            "ca": "/home/gord/client-ssl/ca.pem",
+            "cert": "/home/gord/client-ssl/client-cert.pem",
+            "key": "/home/gord/client-ssl/client-key.pem"
         }
     }
 )
