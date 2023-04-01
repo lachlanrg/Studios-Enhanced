@@ -3,5 +3,4 @@ Gunicorn
 sqlalchemy
 pymysql
 mysql
-os
 flask-mysqldb
