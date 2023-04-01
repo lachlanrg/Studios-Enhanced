@@ -14,7 +14,7 @@
       <li class="nav-item"><a href="{{ url_for('student') }}" class="nav-link" style="color:white">Student</a></li>
       <li class="nav-item"><a href="{{ url_for('profile') }}" class="nav-link" style="color:white">Profile</a></li>
       <li class="nav-item"><a href="#" class="nav-link">N/A</a></li>
-      <li class="nav-item"><a href="{{ url_for('login') }}" class="nav-link">Possible Logout</a></li>
+      <li class="nav-item"><a href="{{ url_for('logout') }}" class="nav-link">Logout</a></li>
   </ul>
   </header>
 </div>
@@ -34,7 +34,7 @@
           <div><b>Product Owner:</b> {{product['powner']}}</div>
           <div><b>Desciption:</b> {{product['descript']}}</div>
 
-          {% if 'prerequisites' in products %}
+          {% if 'prerequisites' in product %}
             <div><b>Prerequisite:</b> {{product['prerequisites']}}</div>
           {% endif %}
 
