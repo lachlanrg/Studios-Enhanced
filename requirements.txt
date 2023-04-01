@@ -2,3 +2,5 @@ Flask
 Gunicorn
 sqlalchemy
 pymysql
+mysql
+os
