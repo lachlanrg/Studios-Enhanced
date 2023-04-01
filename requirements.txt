@@ -4,4 +4,4 @@ sqlalchemy
 pymysql
 mysql
 os
-flask_mysql
+flask_mysqldb
