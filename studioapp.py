@@ -2,7 +2,6 @@ from flask import Flask, render_template, jsonify, request, redirect, url_for, s
 from database import load_products_from_db
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
-import MySQLdb
 import re
 import os
 import ssl
@@ -10,7 +9,6 @@ import ssl
 
 app = Flask(__name__, template_folder='Templates')
 app.secret_key = os.urandom(24)
-app.secret_key = 'uwbdu8jJ89WJH4bjos834Hbu8Jhfiueak99bn0bbjsdf'
 
 # Initialize MySQL
 app.config['MYSQL_HOST'] = 'aws.connect.psdb.cloud'
@@ -18,8 +16,10 @@ app.config['MYSQL_USER'] = 'p3tdqa99eyp5ihs04p9m'
 app.config['MYSQL_PASSWORD'] = 'pscale_pw_ReSZao9FFuxG5X7dYrZu7dfL0vryGybgYNI2k7Oc7Dg'
 app.config['MYSQL_DB'] = 'studiosenhanced'
 
-
 mysql = MySQL(app)
+
+app.secret_key = 'uwbdu8jJ89WJH4bjos834Hbu8Jhfiueak99bn0bbjsdf'
+
 
 # this is where I can add more html pages
 # for each app route is another web page that is viewed
