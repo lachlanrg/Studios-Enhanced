@@ -21,6 +21,7 @@ def load_products_from_db():
         for row in result.all():
             products.append(dict(zip(column_names, row)))
         return products
+    
 
 
 
