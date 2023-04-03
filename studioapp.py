@@ -19,7 +19,7 @@ ssl_context.verify_mode = ssl.CERT_NONE
 
 app.config['MYSQL_SSL_CTX'] = ssl_context
 
-ssl = {'ca': '/etc/ssl/cert.pem'}
+ssl = {"ssl_cert": "/etc/ssl/cert.pem"}
 conn = MySQLdb.connect ( 
     host='aws.connect.psdb.cloud', 
     user='p3tdqa99eyp5ihs04p9m', 
