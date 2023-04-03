@@ -2,6 +2,7 @@ from flask import Flask, render_template, jsonify, request, redirect, url_for, s
 from database import load_products_from_db
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
+import MySQLdb
 import re
 import os
 import ssl
@@ -17,6 +18,13 @@ ssl_context.check_hostname = False
 ssl_context.verify_mode = ssl.CERT_NONE
 
 app.config['MYSQL_SSL_CTX'] = ssl_context
+
+ssl = {'ca': '/etc/ssl/cert.pem'}
+conn = MySQLdb.connect( 
+    host='aws.connect.psdb.cloud', 
+    user='p3tdqa99eyp5ihs04p9m', 
+    password='pscale_pw_ReSZao9FFuxG5X7dYrZu7dfL0vryGybgYNI2k7Oc7Dg', 
+    db='studiosenhanced', ssl=ssl)
 
 # Initialize MySQL
 app.config['MYSQL_HOST'] = 'aws.connect.psdb.cloud'
