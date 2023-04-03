@@ -19,7 +19,7 @@ ssl_context.verify_mode = ssl.CERT_NONE
 
 app.config['MYSQL_SSL_CTX'] = ssl_context
 
-ssl = {"ssl_cert": "/etc/ssl/cert.pem"}
+ssl = {'ca': '/etc/ssl/cert.pem'}
 conn = MySQLdb.connect ( 
     host='aws.connect.psdb.cloud', 
     user='p3tdqa99eyp5ihs04p9m', 
@@ -27,12 +27,16 @@ conn = MySQLdb.connect (
     db='studiosenhanced', ssl=ssl
 )
 
+app.config['MYSQL_SSL_CA'] = '/etc/ssl/cert.pem'
+app.config['MYSQL_SSL_CERT'] = 'client-cert.pem'
+app.config['MYSQL_SSL_KEY'] = 'client-key.pem'
+
 # Initialize MySQL
 app.config['MYSQL_HOST'] = 'aws.connect.psdb.cloud'
 app.config['MYSQL_USER'] = 'p3tdqa99eyp5ihs04p9m'
 app.config['MYSQL_PASSWORD'] = 'pscale_pw_ReSZao9FFuxG5X7dYrZu7dfL0vryGybgYNI2k7Oc7Dg'
 app.config['MYSQL_DB'] = 'studiosenhanced'
-app.config['MYSQL_SSL_CA'] = '/etc/ssl/cert.pem'
+
 
 mysql = MySQL(app)
 
