@@ -2,7 +2,6 @@ from flask import Flask, render_template, jsonify, request, redirect, url_for, s
 from database import load_products_from_db
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
-import MySQLdb
 import re
 import os
 import ssl
@@ -12,29 +11,19 @@ app = Flask(__name__, template_folder='Templates')
 app.secret_key = os.urandom(24)
 
 # Initialize MySQL
-ssl_context = ssl.create_default_context(cafile='/etc/ssl/cert.pem')
-ssl_context.check_hostname = False
-ssl_context.verify_mode = ssl.CERT_NONE
+app.config['MYSQL_HOST'] = 'aws.connect.psdb.cloud'
+app.config['MYSQL_USER'] = 'p3tdqa99eyp5ihs04p9m'
+app.config['MYSQL_PASSWORD'] = 'pscale_pw_ReSZao9FFuxG5X7dYrZu7dfL0vryGybgYNI2k7Oc7Dg'
+app.config['MYSQL_DB'] = 'studiosenhanced'
 
-# MySQL connection configuration
-config = {
-    'user': 'p3tdqa99eyp5ihs04p9m',
-    'password': 'pscale_pw_ReSZao9FFuxG5X7dYrZu7dfL0vryGybgYNI2k7Oc7Dg',
-    'host': 'aws.connect.psdb.cloud',
-    'port': 3306,
-    'database': 'studiosenhanced',
-    'ssl': {
-        'ssl': True,
-        'ssl_context': ssl_context
-    },
-    'connect_timeout': 60  # set the timeout value to 60 seconds
-}
+mysql = MySQL(app)
 
-# Connect to the MySQL server using SSL/TLS encryption
-conn = MySQLdb.connect(**config)
+app.secret_key = 'uwbdu8jJ89WJH4bjos834Hbu8Jhfiueak99bn0bbjsdf'
+
 
 # this is where I can add more html pages
 # for each app route is another web page that is viewed
+    
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
@@ -44,7 +33,7 @@ def login():
         email = request.form['email']
         password = request.form['password']
         # Check if account exists using MySQL
-        cursor = conn.cursor(MySQLdb.cursors.DictCursor)
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('SELECT * FROM accounts WHERE email = %s AND password = %s', (email, password))
         account = cursor.fetchone()
         cursor.close()
@@ -54,6 +43,9 @@ def login():
             session['loggedin'] = True
             session['id'] = account['id']
             session['email'] = account['email']
+
+            mysql.connection.commit()
+            mysql.connection.close()
 
             # Redirect to home page
             return redirect(url_for('home'))
@@ -89,11 +81,10 @@ def student():
 def profile():
     # Check if user is loggedin
     if 'loggedin' in session:
-        cursor = conn.cursor(MySQLdb.cursors.DictCursor)
+
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('SELECT * FROM accounts WHERE id = %s', (session['id'],))
         account = cursor.fetchone()
-        cursor.close()
-
         # Show the profile page with account info
         return render_template('profile.html', account=account)
     # User is not loggedin redirect to login page
