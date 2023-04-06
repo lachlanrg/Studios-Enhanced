@@ -51,6 +51,16 @@ div.home {
      -moz-border-radius: 6px;
           border-radius: 6px;
 }
+
+div.product-container {
+  width: calc(33.33% - 20px);
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
 div.student {
   padding: 20px 50px 30px 50px;
   background-color: #ffffff;

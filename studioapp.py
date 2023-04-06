@@ -19,7 +19,7 @@ ssl_context.verify_mode = ssl.CERT_NONE
 # MySQL connection configuration
 config = {
     'user': 'p3tdqa99eyp5ihs04p9m',
-    'password': 'pscale_pw_ReSZao9FFuxG5X7dYrZu7dfL0vryGybgYNI2k7Oc7Dg',
+    'password': 'password',
     'host': 'aws.connect.psdb.cloud',
     'port': 3306,
     'database': 'studiosenhanced',
