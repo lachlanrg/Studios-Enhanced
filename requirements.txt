@@ -4,4 +4,4 @@ sqlalchemy
 pymysql
 mysql
 flask-mysqldb
-python-dotenv mysqlclient
+python-dotenv
