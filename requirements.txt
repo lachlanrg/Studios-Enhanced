@@ -6,3 +6,4 @@ mysql
 flask-mysqldb
 python-dotenv
 flask_sqlalchemy
+mysql.connector
