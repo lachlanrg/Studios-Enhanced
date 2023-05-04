@@ -3,6 +3,7 @@ from database import load_products_from_db
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
 import MySQLdb
+import mysql.connector
 import re
 import os
 import ssl
@@ -11,22 +12,34 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-
 app = Flask(__name__, template_folder='Templates')
 app.secret_key = os.urandom(24)
 
 # Initialize MySQL
 
-connection = MySQLdb.connect(
-  host= os.getenv("HOST"),
-  user=os.getenv("USERNAME"),
-  passwd= os.getenv("PASSWORD"),
-  db= os.getenv("DATABASE"),
-  ssl_mode = "VERIFY_IDENTITY",
-  ssl      = {
-    "ca": "/Users/lachlangreig/Documents/Studios-Enhanced/cert.pem"
-  }
-)
+# connection = MySQLdb.connect(
+#   host= os.getenv("HOST"),
+#   user=os.getenv("USERNAME"),
+#   passwd= os.getenv("PASSWORD"),
+#   db= os.getenv("DATABASE"),
+#   ssl_mode = "VERIFY_IDENTITY",
+#   ssl      = {
+   ### "ca": "/Users/lachlangreig/Documents/Studios-Enhanced/cert.pem"
+ #    "ca": "/etc/secrets/cert.pem"
+ #  }
+# )
+
+config = {
+    'user': os.getenv("USERNAME"),
+    'password': os.getenv("PASSWORD"),
+    'host': os.getenv("HOST"),
+    'database': os.getenv("DATABASE"),
+    'ssl_ca': '/etc/secrets/cert.pem',
+    'ssl_mode': 'VERIFY_IDENTITY',
+}
+
+# Establish a connection to the database
+connection = mysql.connector.connect(**config)
 
 # Connect to the MySQL server using SSL/TLS encryption
 
@@ -104,6 +117,8 @@ def profile():
 def list_products():
     products = load_products_from_db()
     return jsonify(products)
+
+connection.close()
 
 
 if __name__ == '__main__':
