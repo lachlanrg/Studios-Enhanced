@@ -35,7 +35,8 @@ config = {
     'password': os.getenv("PASSWORD"),
     'host': os.getenv("HOST"),
     'database': os.getenv("DATABASE"),
-    'ssl_ca': '/Users/lachlangreig/Documents/Studios-Enhanced/cert.pem',
+    'ssl_ca': '/etc/secrets/cert.pem', 
+    # 'ssl_ca': '/Users/lachlangreig/Documents/Studios-Enhanced/cert.pem', 
     'use_pure': True,
     'client_flags': [ClientFlag.SSL]
 }
