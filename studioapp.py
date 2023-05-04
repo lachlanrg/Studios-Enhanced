@@ -1,9 +1,10 @@
 from flask import Flask, render_template, jsonify, request, redirect, url_for, session
 from database import load_products_from_db
-from flask_mysqldb import MySQL
 import MySQLdb.cursors
-import MySQLdb
 import mysql.connector
+from mysql.connector.constants import ClientFlag
+from mysql.connector.pooling import MySQLConnectionPool
+from mysql.connector import cursor
 import re
 import os
 import ssl
@@ -34,18 +35,22 @@ config = {
     'password': os.getenv("PASSWORD"),
     'host': os.getenv("HOST"),
     'database': os.getenv("DATABASE"),
-    'ssl_ca': '/etc/secrets/cert.pem',
-    'ssl_mode': 'REQUIRED',
+    'ssl_ca': '/Users/lachlangreig/Documents/Studios-Enhanced/cert.pem',
+    'use_pure': True,
+    'client_flags': [ClientFlag.SSL]
 }
 
 # Establish a connection to the database
 connection = mysql.connector.connect(**config)
 
-# Connect to the MySQL server using SSL/TLS encryption
+pool = MySQLConnectionPool(pool_name="mypool", pool_size=5, **config)
 
+def get_mysql_connection():
+    return pool.get_connection()
 
 # this is where I can add more html pages
 # for each app route is another web page that is viewed
+
 
 @app.route('/', methods=['GET', 'POST'])
 def login():
@@ -55,11 +60,13 @@ def login():
         email = request.form['email']
         password = request.form['password']
         # Check if account exists using MySQL
-        cursor = connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM accounts WHERE email = %s AND password = %s', (email, password))
-        account = cursor.fetchone()
-        cursor.close()
-        # If account exists in accounts table in mysql database
+        with get_mysql_connection() as connection:
+            cursor = connection.cursor(dictionary=True) # Use dictionary=True instead of MySQLdb.cursors.DictCursor
+            cursor.execute('SELECT * FROM accounts WHERE email = %s AND password = %s', (email, password))
+            account = cursor.fetchone()
+            cursor.close()
+
+        # If account exists in accounts table in the MySQL database
         if account:
             # Create session data
             session['loggedin'] = True
@@ -69,9 +76,10 @@ def login():
             # Redirect to home page
             return redirect(url_for('home'))
         else:
-            # If account doesnt exist or email/password incorrect use this message
+            # If account doesn't exist or email/password incorrect use this message
             msg = 'Incorrect email/password!'
     return render_template('login_page.html', msg=msg)
+
 
 
 @app.route('/logout')
@@ -100,10 +108,10 @@ def student():
 def profile():
     # Check if user is loggedin
     if 'loggedin' in session:
-        cursor = connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor = connection.cursor(dictionary=True)
         cursor.execute('SELECT * FROM accounts WHERE id = %s', (session['id'],))
         account = cursor.fetchone()
-        cursor.close()
+        cursor.close()  # Close the cursor
 
         # Show the profile page with account info
         return render_template('profile.html', account=account)
@@ -117,9 +125,6 @@ def profile():
 def list_products():
     products = load_products_from_db()
     return jsonify(products)
-
-connection.close()
-
 
 if __name__ == '__main__':
     app.run(debug=True)
