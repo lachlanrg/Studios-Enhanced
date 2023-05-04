@@ -35,7 +35,7 @@ config = {
     'host': os.getenv("HOST"),
     'database': os.getenv("DATABASE"),
     'ssl_ca': '/etc/secrets/cert.pem',
-    'ssl_mode': 'VERIFY_IDENTITY',
+    'ssl_mode': 'REQUIRED',
 }
 
 # Establish a connection to the database
