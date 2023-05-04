@@ -6,32 +6,30 @@ import MySQLdb
 import re
 import os
 import ssl
+from models import db, Account
+from dotenv import load_dotenv
+load_dotenv()
+
 
 
 app = Flask(__name__, template_folder='Templates')
 app.secret_key = os.urandom(24)
 
 # Initialize MySQL
-ssl_context = ssl.create_default_context(cafile='/etc/ssl/cert.pem')
-ssl_context.check_hostname = False
-ssl_context.verify_mode = ssl.CERT_NONE
 
-# MySQL connection configuration
-config = {
-    'user': 'p3tdqa99eyp5ihs04p9m',
-    'password': 'password',
-    'host': 'aws.connect.psdb.cloud',
-    'port': 3306,
-    'database': 'studiosenhanced',
-    'ssl': {
-        'ssl': True,
-        'ssl_context': ssl_context
-    },
-    'connect_timeout': 60  # set the timeout value to 60 seconds
-}
+connection = MySQLdb.connect(
+  host= os.getenv("HOST"),
+  user=os.getenv("USERNAME"),
+  passwd= os.getenv("PASSWORD"),
+  db= os.getenv("DATABASE"),
+  ssl_mode = "VERIFY_IDENTITY",
+  ssl      = {
+    "ca": "/Users/lachlangreig/Documents/Studios-Enhanced/cert.pem"
+  }
+)
 
 # Connect to the MySQL server using SSL/TLS encryption
-conn = MySQLdb.connect(**config)
+
 
 # this is where I can add more html pages
 # for each app route is another web page that is viewed
@@ -44,7 +42,7 @@ def login():
         email = request.form['email']
         password = request.form['password']
         # Check if account exists using MySQL
-        cursor = conn.cursor(MySQLdb.cursors.DictCursor)
+        cursor = connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('SELECT * FROM accounts WHERE email = %s AND password = %s', (email, password))
         account = cursor.fetchone()
         cursor.close()
@@ -89,7 +87,7 @@ def student():
 def profile():
     # Check if user is loggedin
     if 'loggedin' in session:
-        cursor = conn.cursor(MySQLdb.cursors.DictCursor)
+        cursor = connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('SELECT * FROM accounts WHERE id = %s', (session['id'],))
         account = cursor.fetchone()
         cursor.close()

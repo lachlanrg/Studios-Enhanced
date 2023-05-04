@@ -1,13 +1,24 @@
 from sqlalchemy import create_engine, text
+from dotenv import load_dotenv
+load_dotenv()
+import MySQLdb
+import os
 
-dbconnection_string = "mysql+pymysql://p3tdqa99eyp5ihs04p9m:pscale_pw_ReSZao9FFuxG5X7dYrZu7dfL0vryGybgYNI2k7Oc7Dg@aws.connect.psdb.cloud/studiosenhanced?charset=utf8mb4"
+
+db_username = os.getenv('USERNAME')
+db_password = os.getenv('PASSWORD')
+db_host = os.getenv('HOST')
+db_name = os.getenv('DATABASE')
+
+# Create the connection string using the values from the .env file
+dbconnection_string = f"mysql+pymysql://{db_username}:{db_password}@{db_host}/{db_name}?charset=utf8mb4"
 
 #instead of "ca": "insert cert"
 engine = create_engine (
     dbconnection_string, pool_pre_ping=True,
     connect_args= {
         "ssl": {
-            "ssl_cert": "/etc/ssl/cert.pem"
+            "ssl_cert": "/Users/lachlangreig/Documents/Studios-Enhanced/cert.pem"
         }
 
     }
