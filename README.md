@@ -26,6 +26,7 @@ Additionally for testing, you will need to download various python libraries. Th
 
     pip install mysql-connector-python 
 
+To run application on local host, run studioapp.py and open local host on your browser.
 
 Please find the MySQL database SQL code in the sql.txt file. 
 
