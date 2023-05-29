@@ -930,6 +930,7 @@ a.session_box:hover {
     font-size: 0.8em;
     color: #888888;
 }
+
 /* posting the text in discussion */
 
 .subject {
@@ -962,7 +963,6 @@ form.post-form {
 	background-color: rgb(37, 37, 37);
 	color: white;
 
-
 }
 
 .post-form button {
@@ -982,8 +982,6 @@ form.post-form {
     background-color: #0056b3;
 }
 
-
-
 hr {
     border: 0;
     height: 1px;
@@ -992,7 +990,6 @@ hr {
 }
 
 .discussion {
-    /* existing styles... */
     position: relative;
 }
 
@@ -1001,6 +998,7 @@ hr {
     top: 10px;
     right: 10px;
 }
+
 .delete-form button {
     background-color: #dd1c1c;
     color: white;
