@@ -7,7 +7,7 @@ Autumn 2023 Session
 
 I have removed the database credentials from the .env file for security and connection purposes as it will be published to a public repository.  
 
-Please find the database credentials in Appendix 5 of the report and follow instructions.
+Please find the database credentials in Appendix 4 of the report and follow instructions.
 
 If after downloading the files there is no .env file present, you may need to create one.  
 
