@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% extends "layout.html" %}
+{% block content %}
+
+<section id="main">
+
+  <div id="main-content_home" style ="width: 1400px";>
+    <div id="main-content__container" style ="width: 1360px";>
+        <h1 style="margin-bottom: 1px;";>Submit a Product</h1>
+
+        <div>
+            <body>
+                <div class="createproduct-container">
+                    <form method="POST" class="createproduct-form">
+                        {{ form.hidden_tag() }}
+            
+                        <label for="title" class="createproduct-label">{{ form.title.label }}</label>
+                        {{ form.title(id='title', class='createproduct-input', style='width:500px; height:50px;') }}<br>
+            
+                        <label for="owner" class="createproduct-label">{{ form.owner.label }}</label>
+                        {{ form.owner(id='owner', class='createproduct-input') }}<br>
+            
+                        <label for="prerequisites" class="createproduct-label">{{ form.prerequisites.label }}</label>
+                        {{ form.prerequisites(id='prerequisites', class='createproduct-textarea', style='height:100px;') }}<br>
+            
+                        <label for="description" class="createproduct-label">{{ form.description.label }}</label>
+                        {{ form.description(id='description', class='createproduct-textarea', style='height:100px;') }}<br>
+            
+                        {{ form.submit(class='createproduct-submit') }}
+                    </form>
+                </div>
+            </body>
+            
+            
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class=flashes>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+                </ul>
+            {% endif %}
+            {% endwith %}
+            
+        </div>
+    </div>
+  </div>
+
+    
+
+{% endblock %} 
+
+</section>
+
+

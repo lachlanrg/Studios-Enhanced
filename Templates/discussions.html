@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% extends "layout.html" %}
+{% block content %}
+
+<section id="main">
+
+  <div id="main-content_home" style ="width: 1400px";>
+    <div id="main-content__container" style ="width: 1360px";>
+
+        <div>
+            <body>
+                <h1>Discussions</h1>
+
+                    <form class="post-form" action="{{ url_for('discussions') }}" method="POST">
+                        <input type="text" name="subject" placeholder="Enter subject..." required>
+                        <textarea name="content" placeholder="Enter your discussion here..."></textarea>
+                        <button type="submit">Post Discussion</button>
+                    </form>
+                    
+                    <hr>
+
+                    {% for discussion in discussions %}
+                        <div class="discussion">
+                            <h2 class="subject">{{ discussion.subject }}</h2>
+                            <p class="author">{{ discussion.first_name }} {{ discussion.last_name }}:</p>
+                            <p>{{ discussion.content }}</p>
+                            <form action="{{ url_for('delete_discussion', id=discussion.id) }}" method="POST" class="delete-form">
+                                <button type="submit">Delete</button>
+                            </form>
+                            <p class="timestamp">Posted at: {{ discussion.timestamp }}</p>
+                        </div>
+                    {% endfor %}
+
+
+            </body>
+        </div>
+    </div>
+  </div>
+  {% endblock %} 
+</section>
+
+
+
+

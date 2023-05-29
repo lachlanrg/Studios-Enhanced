@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+{% extends "layout.html" %}
+{% block content %}
+
+<section id="main">
+
+  <div id="main-content_home" style ="width: 1400px";>
+    <div id="main-content__container" style ="width: 1360px";>
+        <h1 style="margin-bottom: 1px;";>Submit Feedback from Pitch</h1>
+
+        <div class="container">
+            <form action="/feedback" method="post" class="feedback-form">
+                    {{ form.hidden_tag() }}
+           
+                    <label for="group" class="feedback-label">Group:</label>
+                    {{ form.group(id='group', class='feedback-input', style='width:500px; height:50px;') }}<br>
+
+                    <label for="session_number" class="feedback-label">Session:</label>
+                    {{ form.session_number(id='session_number', class='feedback-select') }}<br>
+
+                    <label for="positives" class="feedback-label">What did the group do well?</label>
+                    {{ form.positives(id='positives', class='feedback-textarea') }}<br>
+
+                    <label for="improvements" class="feedback-label">What can they improve upon?</label>
+                    {{ form.improvements(id='improvements', class='feedback-textarea') }}<br>
+
+                    <label for="impression" class="feedback-label">Overall impression of the pitch (rate 1-10):</label>
+                    {{ form.impression(id='impression', class='feedback-input') }}<br>
+
+                    <label for="tips" class="feedback-label">Any tips/points of interest:</label>
+                    {{ form.tips(id='tips', class='feedback-textarea') }}<br>
+                    
+                    {{ form.submit(class='feedback-submit') }}
+                </form>
+            
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class=flashes>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+                </ul>
+            {% endif %}
+            {% endwith %}
+
+            </body>
+            
+        </div>
+    </div>
+  </div>
+
+    
+
+{% endblock %} 
+
+</section>

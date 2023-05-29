@@ -1,0 +1,59 @@
+The following details the tables created in MySQL Database:
+
+CREATE TABLE `accounts` (
+	`id` int NOT NULL AUTO_INCREMENT,
+	`email` varchar(255) NOT NULL,
+	`password` varchar(255) NOT NULL,
+	`current_studio` varchar(255) NOT NULL,
+	`first_name` varchar(255) NOT NULL,
+	`last_name` varchar(255) NOT NULL,
+	`product_preference1` varchar(255),
+	`product_preference2` varchar(255),
+	`product_preference3` varchar(255),
+	`current_product` varchar(255),
+	`role` varchar(255) NOT NULL,
+	PRIMARY KEY (`id`),
+	UNIQUE KEY `email` (`email`)
+)
+
+CREATE TABLE `products` (
+	`id` int NOT NULL AUTO_INCREMENT,
+	`title` varchar(255) NOT NULL,
+	`product_owner` varchar(255) NOT NULL,
+	`prerequisites` varchar(255),
+	`description` varchar(255) NOT NULL,
+	PRIMARY KEY (`id`),
+	UNIQUE KEY `title` (`title`)
+)
+
+CREATE TABLE `feedback` (
+	`id` int NOT NULL AUTO_INCREMENT,
+	`groupName` varchar(255) NOT NULL,
+	`session_number` int,
+	`positives` text,
+	`improvements` text,
+	`impression` int NOT NULL,
+	`tips` text,
+	PRIMARY KEY (`id`)
+)
+
+CREATE TABLE `product_accounts` (
+	`product_title` varchar(255) NOT NULL,
+	`student_id` int NOT NULL,
+	`preference` int,
+	`enrolled_at` datetime,
+	PRIMARY KEY (`product_title`, `student_id`)
+)
+
+CREATE TABLE `discussions` (
+	`id` int NOT NULL AUTO_INCREMENT,
+	`first_name` varchar(64) NOT NULL,
+	`last_name` varchar(64) NOT NULL,
+	`content` text NOT NULL,
+	`timestamp` timestamp NULL DEFAULT current_timestamp(),
+	`subject` varchar(255) NOT NULL,
+	PRIMARY KEY (`id`)
+)
+
+
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% extends "layout.html" %}
+{% block content %}
+
+<section id="main" style="width: fit-content;">
+
+  <div id="main-content_home" style ="width: 1400px";>
+    <div id="main-content__container" style ="width: 1360px";>
+              <h1>Preferences</h1>
+
+        <div>
+            {% for product_id, product_accounts in products.items() %}
+            <h2>{{ product_id }}</h2>
+            <h3>Enrolled Accounts</h3>
+            <ul style="padding-left: 20px;">
+                {% for enrolled_account in product_accounts['enrolled_accounts'] %}
+                    <li>{{ enrolled_account['first_name'] }} {{ enrolled_account['last_name'] }}</li>
+                {% endfor %}
+            </ul>
+            <h3>Preference Accounts</h3>
+            <ul>
+                {% for preference_account in product_accounts['preference_accounts'] %}
+                    <li>{{ preference_account['first_name'] }} {{ preference_account['last_name'] }}</li>
+                {% endfor %}
+            </ul>
+            <hr>
+        {% endfor %}
+
+        </div>
+
+    </div>
+  </div>
+
+{% endblock %} 
+
+</section>

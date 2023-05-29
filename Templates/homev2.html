@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% extends "layout.html" %}
+{% block content %}
+
+<section id="main">
+
+  <div id="main-content_home" style ="width: 1400px";>
+    <div id="main-content__container" style ="width: 1360px";>
+              <h1>Sessions</h1>
+      
+      <div id = sessions>
+        {% for product in products %}
+        
+        <a class="session_box" href="{{ url_for('show_product', id=product['id']) }}">{{product['title']}}</a>
+              
+        {% endfor %}
+
+        <a class="add_session_box" href="{{ url_for('create_product') }}" >+</a>
+      </div>
+      
+
+      <h2>Archived</h2>
+
+      
+
+
+    </div>
+  </div>
+
+{% endblock %} 
+
+  <!--
+
+  {% for product in products %}
+      <div class="border-bottom" style="margin-bottom: 16px; padding-bottom: 20px";>
+          <h4>{{product['title']}}</h4>
+          <div><b>Product Owner:</b> {{product['product_owner']}}</div>
+          <div><b>Desciption:</b> {{product['description']}}</div>
+
+          {% if 'prerequisites' in product %}
+            <div><b>Prerequisite:</b> {{product['prerequisites']}}</div>
+          {% endif %}
+
+      </div>
+      {% endfor %}
+      
+  -->
+
+</section>
+      
+      
+    
+
+
+
+
+

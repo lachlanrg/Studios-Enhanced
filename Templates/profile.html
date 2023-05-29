@@ -2,36 +2,76 @@
 {% extends "layout.html" %}
 {% block content %}
 
-<div class="container">
-  <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-  <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-      <span class="fs-4">Studios Enhanced</span>
-  </a>
+<section id="main" style="width: fit-content;">
 
-  <ul class="nav nav-pills">
-      <li class="nav-item"><a href="{{ url_for('home') }}" class="nav-link">Home</a></li>
-      <li class="nav-item"><a href="{{ url_for('student') }}" class="nav-link">Student</a></li>
-      <li class="nav-item"><a href="{{ url_for('profile') }}" class="nav-link active" aria-current="page">Profile</a></li>
-      <li class="nav-item"><a href="#" class="nav-link">N/A</a></li>
-      <li class="nav-item"><a href="{{ url_for('logout') }}" class="nav-link">Logout</a></li>
-  </ul>
-  </header>
-</div>
+  <div id="main-content_home" style ="width: 1400px";>
+    <div id="main-content__container" style ="width: 1360px";>
+              <h1>Account Profile</h1>
 
+      <div>
 
+        <h3>{{account['first_name']}} {{account['last_name']}}</h3>
 
-  <div class="profile">
-    <h1>This shows the users profile</h1>
-    <p>Your account details are below:</p>
-    <br>
-    <div class="border-bottom" style="margin-bottom: 16px; padding-bottom: 20px";>
-      <h4>{{account['first_name']}} {{account['last_name']}}</h4>
-      <div><b>Student ID:</b> {{account['id']}}</div>
-      <div><b>Email:</b> {{account['email']}}</div>
-      <div><b>Account Type:</b> {{account['accountrole']}}</div>
-      <div><b>Current Studio:</b> {{account['current_studio']}}</div>
+        <div style="padding-bottom: 8px;">
+          <b>Student ID:</b> {{account['id']}}
+        </div>
+        <div style="padding-bottom: 8px;">
+          <b>Email:</b> {{account['email']}}
+        </div>
+        <div style="padding-bottom: 8px;">
+          <b>Current Studio:</b> {{account['current_studio']}}
+        </div>
+
+        <div style="padding-bottom: 8px;">
+          <b>Role:</b> {{account['role']}}
+        </div>
+
+        {% if 'product_preference1' in account %}
+        <div style="padding-bottom: 8px;">
+          <b>Product Preference 1:</b> {{account['product_preference1']}}
+        </div>
+        {% endif %}
+
+        {% if 'product_preference2' in account %}
+        <div style="padding-bottom: 8px;">
+          <b>Product Preference 2:</b> {{account['product_preference2']}}
+        </div>
+        {% endif %}
+
+        {% if 'product_preference3' in account %}
+        <div style="padding-bottom: 8px;">
+          <b>Product Preference 3:</b> {{account['product_preference3']}}
+        </div>
+        {% endif %}
+
+        {% if 'current_product' in account %}
+        <div style="padding-top: 15px;">
+          <b>Enroled Product:</b> {{account['current_product']}}
+        </div>
+        {% endif %}
+
+      </div>
+
     </div>
+  </div>
 
-  </div>      
-{% endblock %}
+{% endblock %} 
+
+  <!--
+
+  {% for product in products %}
+      <div class="border-bottom" style="margin-bottom: 16px; padding-bottom: 20px";>
+          <h4>{{product['title']}}</h4>
+          <div><b>Product Owner:</b> {{product['product_owner']}}</div>
+          <div><b>Desciption:</b> {{product['description']}}</div>
+
+          {% if 'prerequisites' in product %}
+            <div><b>Prerequisite:</b> {{product['prerequisites']}}</div>
+          {% endif %}
+
+      </div>
+      {% endfor %}
+      
+  -->
+
+</section>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% extends "layout.html" %}
+{% block content %}
+
+<section id="main" style="width: fit-content;">
+
+    <div id="main-content_home" style ="width: 1400px";>
+        <div id="main-content__container" style ="width: 1360px";>
+              <h1>Admin</h1>
+
+      <div>
+        <a href="{{ url_for('download_account_csv') }}" class="btn btn-primary">Download Account CSV</a>
+        <a style="margin-left: 10px" href="{{ url_for('download_product_accounts_csv') }}" class="btn btn-primary">Download Products with Accounts CSV</a>
+        <a style="margin-left: 10px" href="{{ url_for('download_preference_csv') }}" class="btn btn-primary">Download Preferences CSV</a>
+        <a style="margin-left: 10px" href="{{ url_for('download_feedback_csv') }}" class="btn btn-primary">Download Feedback CSV</a>
+
+
+      </div>
+
+
+        </div>
+    </div>
+
+{% endblock %} 
+
+  <!--
+
+  {% for product in products %}
+      <div class="border-bottom" style="margin-bottom: 16px; padding-bottom: 20px";>
+          <h4>{{product['title']}}</h4>
+          <div><b>Product Owner:</b> {{product['product_owner']}}</div>
+          <div><b>Desciption:</b> {{product['description']}}</div>
+
+          {% if 'prerequisites' in product %}
+            <div><b>Prerequisite:</b> {{product['prerequisites']}}</div>
+          {% endif %}
+
+      </div>
+      {% endfor %}
+      
+  -->
+
+</section>
